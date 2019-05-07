@@ -13,11 +13,10 @@
 
 <body style="font-size:20px; padding:50px;">
     <!-- Add EJS code here -->
+    <h2><% include ./partials/_header.ejs %></h2>
     <a href="href='#'">Create New TinyURL</a>
-    <ul>
-        <li><%= shortURL %></li>
-        <li><%= longURL %></li>
-    </ul>
+    <h5>TinyURL for <%= shortURL %></h5>
+    <p><%= longURL %></p>
 </body>
 
 </html>
