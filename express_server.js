@@ -51,6 +51,12 @@ app.get("/urls/:shortURL", (req, res) => {
 app.get("/u/:shortURL", (req, res) => {
     res.redirect(`${urlDatabase[req.params.shortURL]}`)
 });
+//add functionality to delete button
+app.post("/urls/:shortURL/delete", (req, res) => {
+    const short = req.params.shortURL
+    delete urlDatabase[short]
+    res.redirect("/urls")
+})
 
 app.get("/hello", (req, res) => {
     res.send("<html><body>Hello <b>World</b></body></html>\n");
