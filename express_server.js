@@ -51,7 +51,7 @@ app.get("/urls/:shortURL", (req, res) => {
 app.get("/u/:shortURL", (req, res) => {
     res.redirect(`${urlDatabase[req.params.shortURL]}`)
 });
-//add functionality to delete button
+//add delete functionality to button
 app.post("/urls/:shortURL/delete", (req, res) => {
     const short = req.params.shortURL
     delete urlDatabase[short]
@@ -66,6 +66,12 @@ app.post('/urls', (req, res) => {
     const random = generateRandomString()
     urlDatabase[random] = req.body.longURL
     res.status(301).redirect(`/urls/${random}`)
+})
+//edit LongURL
+app.post('/urls/:shortURL', (req, res) => {
+    const short = req.params.shortURL
+    urlDatabase[short] = req.body.longURL
+    res.redirect('/urls')
 })
 
 app.listen(PORT, () => {
