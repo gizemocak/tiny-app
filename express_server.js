@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var PORT = 8080; // default port 8080
 const bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser')
+
+app.use(cookieParser())
 
 function generateRandomString() {
     return (Math.floor(Math.random() * 1000000)).toString()
@@ -71,6 +74,15 @@ app.post('/urls', (req, res) => {
 app.post('/urls/:shortURL', (req, res) => {
     const short = req.params.shortURL
     urlDatabase[short] = req.body.longURL
+    res.redirect('/urls')
+})
+
+//The login route
+app.post('/login', (req, res) => {
+    console.log('req', req.body.username)
+    res.cookie('username', req.body.username)
+    res.send(cookie)
+    console.log(cookie)
     res.redirect('/urls')
 })
 
