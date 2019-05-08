@@ -8,15 +8,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>TinyApp</title>
 </head>
 
 <body style="font-size:20px; padding:50px;">
     <!-- Add EJS code here -->
-    <h2><% include ./partials/_header.ejs %></h2>
-    <a href="href='#'">Create New TinyURL</a>
-    <h5>TinyURL for <%= longURL %> is <a
-            href="http://localhost:8080/u/<%= shortURL %>">http://localhost:8080/u/<%= shortURL %></a> </h5>
+    <header><% include ./partials/_header.ejs %></header>
+    <h2>ShortURL: <%= shortURL %></h2>
+    <form class="form-inline" action="/urls/<%= shortURL %>" method="POST">
+        <input style="width: 250px" class="" type="text" name="longURL" placeholder="<%= longURL %>" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </body>
 
 </html>
