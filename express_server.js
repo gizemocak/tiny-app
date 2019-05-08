@@ -1,8 +1,13 @@
 var express = require('express');
 var app = express();
 var PORT = 8080; // default port 8080
+const bodyParser = require("body-parser");
 
 app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 var urlDatabase = {
     "b2xVn2": "http://www.lighthouselabs.ca",
@@ -10,6 +15,7 @@ var urlDatabase = {
 }
 
 app.get('/', (req, res) => {
+    //console.log(JSON.stringify(req))
     res.send('Hello');
 })
 
@@ -39,6 +45,11 @@ app.get("/urls/:shortURL", (req, res) => {
 app.get("/hello", (req, res) => {
     res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
+
+app.post('/urls', (req, res) => {
+    console.log(req.body)
+    res.send('Ok')
+})
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}!`)
