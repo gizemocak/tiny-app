@@ -79,10 +79,8 @@ app.post('/urls/:shortURL', (req, res) => {
 
 //The login route
 app.post('/login', (req, res) => {
-    console.log('req', req.body.username)
+    // console.log('req', req.body.username)
     res.cookie('username', req.body.username)
-    res.send(cookie)
-    console.log(cookie)
     res.redirect('/urls')
 })
 
