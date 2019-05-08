@@ -18,7 +18,12 @@
     <h4>My URLs</h4>
     <ul>
         <% Object.keys(urls).forEach(function(url){ %>
-        <li><%= url %>: <%= urls[url] %></li>
+        <li>
+            <%= url %> &#8594; <%= urls[url] %>
+            <form method="POST" action="/urls/<%= url %>/delete">
+                <input class="btn btn-outline-dark" type="button" value="Delete">
+            </form>
+        </li>
         <% }); %>
     </ul>
 </body>
