@@ -53,7 +53,8 @@ app.get("/hello", (req, res) => {
 
 app.post('/urls', (req, res) => {
     console.log(req.body)
-    res.send('Ok')
+    urlDatabase[generateRandomString()] = req.body.longURL
+    res.status(301).redirect(`${generateRandomString()}`)
 })
 
 app.listen(PORT, () => {
