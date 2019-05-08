@@ -3,6 +3,10 @@ var app = express();
 var PORT = 8080; // default port 8080
 const bodyParser = require("body-parser");
 
+function generateRandomString() {
+    return (Math.floor(Math.random() * 1000000)).toString()
+}
+
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({
@@ -17,6 +21,7 @@ var urlDatabase = {
 app.get('/', (req, res) => {
     //console.log(JSON.stringify(req))
     res.send('Hello');
+
 })
 
 app.get('/uls.json', (req, res) => {
