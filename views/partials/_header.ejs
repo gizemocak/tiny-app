@@ -1,5 +1,11 @@
 <!-- views/partials/header.ejs -->
 <header>Tiny App</header>
+<%if (username) { %>
+<p>Logged in as <%= username %></p>
+<form class="form-inline" action="/logout" method="POST">
+    <button type="submit" class="btn btn-primary">logout</button>
+</form>
+<% } else { %>
 <form class="form-inline" action="/login" method="POST">
     <div class="form-group mb-2">
         <label for="longURL">Username:</label>
@@ -7,3 +13,4 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </div>
 </form>
+<% } %>

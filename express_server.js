@@ -33,20 +33,25 @@ app.get('/uls.json', (req, res) => {
 
 app.get("/urls", (req, res) => {
     let templateVars = {
-        urls: urlDatabase
+        urls: urlDatabase,
+        username: req.cookies["username"]
     };
     res.render("urls_index", templateVars);
 });
 
 app.get("/urls/new", (req, res) => {
-    res.render("urls_new");
+    let templateVars = {
+        username: req.cookies["username"],
+    };
+    res.render("urls_new", templateVars);
 });
 
 app.get("/urls/:shortURL", (req, res) => {
     console.log(req.params.shortURL, JSON.stringify(urlDatabase))
     let templateVars = {
         shortURL: req.params.shortURL,
-        longURL: urlDatabase[req.params.shortURL]
+        longURL: urlDatabase[req.params.shortURL],
+        username: req.cookies["username"]
     };
     res.render("urls_show", templateVars);
 });
@@ -58,7 +63,10 @@ app.get("/u/:shortURL", (req, res) => {
 app.post("/urls/:shortURL/delete", (req, res) => {
     const short = req.params.shortURL
     delete urlDatabase[short]
-    res.redirect("/urls")
+    let templateVars = {
+        username: req.cookies["username"],
+    };
+    res.redirect("/urls", templateVars)
 })
 
 app.get("/hello", (req, res) => {
@@ -70,7 +78,7 @@ app.post('/urls', (req, res) => {
     urlDatabase[random] = req.body.longURL
     res.status(301).redirect(`/urls/${random}`)
 })
-//edit LongURL
+//Edit LongURL
 app.post('/urls/:shortURL', (req, res) => {
     const short = req.params.shortURL
     urlDatabase[short] = req.body.longURL
@@ -79,8 +87,13 @@ app.post('/urls/:shortURL', (req, res) => {
 
 //The login route
 app.post('/login', (req, res) => {
-    // console.log('req', req.body.username)
     res.cookie('username', req.body.username)
+    res.redirect('/urls')
+})
+
+//The logout route
+app.post('/logout', (req, res) => {
+    res.clearCookie('username')
     res.redirect('/urls')
 })
 
