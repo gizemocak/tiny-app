@@ -66,12 +66,16 @@ app.post("/urls/:shortURL/delete", (req, res) => {
     let templateVars = {
         username: req.cookies["username"],
     };
-    res.redirect("/urls", templateVars)
+    res.redirect("/urls")
 })
 
 app.get("/hello", (req, res) => {
     res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
+
+app.get("/register", (req, res) => {
+    res.render("urls_registration")
+})
 
 app.post('/urls', (req, res) => {
     const random = generateRandomString()
