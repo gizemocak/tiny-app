@@ -13,11 +13,17 @@
 <body style="font-size:20px; padding:50px;">
     <!-- Add EJS code here -->
     <header><% include ./partials/_header.ejs %></header>
+    <%if (user && urlIsUsers) { %>
     <h2>ShortURL: <%= shortURL %></h2>
     <form class="form-inline" action="/urls/<%= shortURL %>" method="POST">
-        <input style="width: 250px" class="" type="text" name="longURL" placeholder="<%= longURL %>" />
+        <input style="width: 325px" class="" type="text" name="longURL" placeholder="<%= longURL %>" />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <%} else if (!urlIsUsers) { %>
+    <p>You have no access to see this url</p>
+    <% }  else { %>
+    <p>Please Login or Register first!</p>
+    <% } %>
 </body>
 
 </html>
