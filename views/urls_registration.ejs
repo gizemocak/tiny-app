@@ -12,13 +12,13 @@
 
 <body style="font-size:20px; padding:50px;">
   <header><% include ./partials/_header.ejs %></header>
-  <h2>Create Account</h2>
+  <h2 style="margin-top: 30px">Create Account</h2>
   <form class="form-inline" action="/register" method="POST">
     <label for="email">Email:</label>
-    <input class="form-control" class="" type="email" name="email" style="width: 300px; margin: 1em"/>
+    <input class="form-control" class="" type="email" name="email" style="width: 300px; margin: 1em" />
     <br />
     <label for="password">Password:</label>
-    <input class="form-control" class="" type="password" name="password" style="width: 300px; margin: 1em"/>
+    <input class="form-control" class="" type="password" name="password" style="width: 300px; margin: 1em" />
     <button type="submit" class="btn btn-primary">Register</button>
   </form>
 </body>

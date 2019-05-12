@@ -11,8 +11,9 @@
 </head>
 
 <body style="font-size:20px; padding:50px;">
-  <h2>An error has occurred</h2>
-  <p><%= error_message %></p>
+  <header><% include ./partials/_header.ejs %></header>
+  <h2>An error has occurred!</h2>
+  <p class="alert alert-danger"><%= error_message %></p>
 </body>
 
 </html>

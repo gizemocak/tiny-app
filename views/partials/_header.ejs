@@ -1,8 +1,8 @@
 <!-- views/partials/header.ejs -->
 <h1>TinyApp</h1>
 <%if (user) { %>
-<a href="/urls">URLs</a> | <a href="/urls/new">Create New Tiny URL</a>
 <p>Logged in as: <%= user.email %></p>
+<a href="/urls">URLs</a>
 <form class="form-inline" action="/logout" method="POST">
     <button type="submit" class="btn btn-primary">logout</button>
 </form>
