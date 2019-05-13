@@ -45,7 +45,7 @@ const users = {
 
 ///---Helper Functions---///
 const generateRandomString = () => {
-    return Math.floor(Math.random() * 1000000).toString();
+    return Math.random().toString(36).substring(7);
 };
 
 const getUserFromEmail = email => {
@@ -233,15 +233,14 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
     const randomId = generateRandomString();
     const email = req.body.email;
-    const password = bcrypt.hashSync(req.body.password, 10);
-
-    if (email.length === 0 || password.length === 0) {
+    if (email.length === 0 || req.body.password.length === 0) {
         res.status(400).render("urls_error", {
             user: null,
             error_message: "Email or password are empty."
         });
     } else if (typeof getUserFromEmail(email) === "undefined") {
         /* register user if email is not already being used */
+        const password = bcrypt.hashSync(req.body.password, 10);
         users[randomId] = {
             id: randomId,
             email: email,
